@@ -1,5 +1,5 @@
 'use strict';
-
+//
 const calcBtn = document.getElementById('start');
 
 const incomeAddBtn = document.getElementsByTagName('button'); 
