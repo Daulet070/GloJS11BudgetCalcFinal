@@ -84,10 +84,6 @@ let appData = {
     periodSelect.addEventListener('change', function (){
       incomePeriodValue.value = appData.calcPeriod();
     });
-    // start.addEventListener('click', function(){
-      
-    //   // incomePlus.disabled = true;
-    // });
   },
   addExpensesBlock: function(){
     let cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -154,7 +150,6 @@ let appData = {
     for(let key in this.expenses){
       this.expensesMonth += + this.expenses[key];
     }
-    console.log('Расходы за месяц: ', this.expensesMonth);
   },
   getBudget: function () {
     this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth;
@@ -228,15 +223,13 @@ let appData = {
     inputs.forEach(item => {
       item.value = '';
     })
-    if (incomeItems.length > 1) {
-      income.removeChild(incomeItems[2]);
-      income.removeChild(incomeItems[1]);
-      incomePlus.style.display = 'block';
+    incomePlus.style.display = 'block';
+    expensesPlus.style.display = 'block';
+    for (let i = 1; i < incomeItems.length; i++) {
+      income.removeChild(incomeItems[i]);
     }
-    if (expensesItems.length > 1) {
-      expenses.removeChild(expensesItems[2]);
-      expenses.removeChild(expensesItems[1]);
-      expensesPlus.style.display = 'block';
+    for (let i = 1; i < expensesItems.length; i++) {
+      expenses.removeChild(expensesItems[i]);
     }
     
   }
