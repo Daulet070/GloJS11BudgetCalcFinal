@@ -64,8 +64,9 @@ AppData.prototype.start = function() {
     cancel.style.display = 'block';
     incomePlus.disabled = true;
     expensesPlus.disabled = true;
-    
-    cancel.addEventListener('click', this.reset);
+    // const _this = this;
+    cancel.addEventListener('click', this.reset.bind(this));
+    // console.log('this.reset: ', this.reset);
     
     this.budget = +salaryAmount.value;
   
@@ -219,10 +220,27 @@ AppData.prototype.periodSelectF = function (){
   return periodAmount.innerText = periodSelect.value;
 };
 AppData.prototype.reset = function() {
+  // const _this = this;
+  this.budget = 0;
+  this.budgetDay = 0;
+  this.budgetMonth = 0;
+  this.income = {};
+  this.incomeMonth = 0;
+  this.addIncome = [];
+  this.expenses = {};
+  this.expensesMonth = 0;
+  this.addExpenses = [];
+  this.deposit = false;
+  this.percentDeposit = 0;
+  this.moneyDeposit = 0;
+  
+  
   cancel.style.display = 'none';
   start.style.display = 'block';
   incomePlus.disabled = false;
   expensesPlus.disabled = false;
+  depositCheck.checked = false;
+  
   let elem = document.querySelector('.data').querySelectorAll('input[type="text"]');
   elem.forEach(function(item){
     item.disabled = false;
@@ -234,14 +252,19 @@ AppData.prototype.reset = function() {
   
   for (let i = 1; i < incomeItems.length; i++) {
     income.removeChild(incomeItems[i]);
+    console.log('income: ', income);
   }
   for (let i = 1; i < expensesItems.length; i++) {
     expenses.removeChild(expensesItems[i]);
+    console.log('expenses: ', expenses);
   }
   incomePlus.style.display = 'block';
   expensesPlus.style.display = 'block';
-  
+  console.log('thisR: ', this);
 };
+
+const appData = new AppData();
+console.log('appData: ', appData);
 
 AppData.prototype.eventsListeners = function () {
 
@@ -250,11 +273,10 @@ AppData.prototype.eventsListeners = function () {
   incomePlus.addEventListener('click', this.addIncomeBlock);
   expensesPlus.addEventListener('click', this.addExpensesBlock);
   periodSelect.addEventListener('input', this.periodSelectF);
-  cancel.addEventListener.bind('click', this.reset.bind(this));
+  // cancel.addEventListener('click', this.reset.bind(this));
   
 };
 
-const appData = new AppData();
-console.log('appData: ', appData);
+
 
 appData.eventsListeners();
