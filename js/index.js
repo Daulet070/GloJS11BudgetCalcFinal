@@ -121,12 +121,12 @@ class AppData {
     }
   };
   getExpInc() {
-    const count = item => {
+    const count = (item, index) => {
       const startStr = item.className.split('-')[0];
       const itemTitle = item.querySelector(`.${startStr}-title`).value;
       const itemAmount = item.querySelector(`.${startStr}-amount`).value;
       if(itemTitle !== '' && itemAmount !== ''){
-        this[startStr][itemTitle] = +itemAmount;
+        this[startStr][itemTitle + index] = +itemAmount;
       }
     }
     incomeItems.forEach(count);
