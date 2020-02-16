@@ -83,7 +83,6 @@ class AppData {
     
       this.getExpInc();
       this.getExpensesMonth();
-      // this.addExpInc();
       this.getAddExpenses();
       this.getAddIncome();
       this.getBudget();
@@ -99,7 +98,7 @@ class AppData {
     additionalExpensesValue.value = this.addExpenses.join(', ');
     additionalIncomeValue.value = this.addIncome.join(', ');
     targetMonthValue.value = Math.ceil(this.getTargetMonth());
-    
+    incomePeriodValue.value = this.calcPeriod();
     periodSelect.addEventListener('change', this.change.bind(this));
   };
   change() {
@@ -125,13 +124,6 @@ class AppData {
     }
     this.checkNumbers();
   };
-  // addExpInc() {
-  //   const count = item => {
-  //     const startStr = item.className.split('-')[0];
-  //     const incExpItems = item.querySelector(`.${startStr}-items`).value;
-  //     // const expensesItems = item.querySelector(`.${startStr}-items`).value;
-  //   }
-  //};
   getExpInc() {
     const count = (item, index) => {
       const startStr = item.className.split('-')[0];
@@ -280,14 +272,11 @@ class AppData {
     incomePlus.addEventListener('click', this.addIncomeBlock.bind(this));
     expensesPlus.addEventListener('click', this.addExpensesBlock.bind(this));
     periodSelect.addEventListener('input', this.periodSelectF.bind(this));
-    
     // cancel.addEventListener('click', this.reset.bind(this));
   };
 }
 
-
 const appData = new AppData();
 console.log('appData: ', appData);
-
 
 appData.eventsListeners();
