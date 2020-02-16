@@ -53,9 +53,9 @@ class AppData {
   checkNumbers(){
     let sumInputs = document.querySelectorAll("[placeholder='Сумма']");
     sumInputs.forEach(item => {
-      item.addEventListener('input', function(){
-        if(!isNumber(this.value)) {
-          this.value = '';
+      item.addEventListener('input', () => {
+        if(!this.isNumber(item.value)) {
+          item.value = '';
         }
       })
     })
@@ -113,7 +113,7 @@ class AppData {
     if(expensesItems.length === 3) {
       expensesPlus.style.display = 'none';
     }
-    this.checkNumbers(this);
+    this.checkNumbers();
   };
   addIncomeBlock () {
     let cloneIncomeItem = incomeItems[0].cloneNode(true);
@@ -123,7 +123,7 @@ class AppData {
     if(incomeItems.length === 3) {
       incomePlus.style.display = 'none';
     }
-    this.checkNumbers(this);
+    this.checkNumbers();
   };
   // addExpInc() {
   //   const count = item => {
@@ -137,7 +137,7 @@ class AppData {
       const startStr = item.className.split('-')[0];
       const itemTitle = item.querySelector(`.${startStr}-title`).value;
       const itemAmount = item.querySelector(`.${startStr}-amount`).value;
-      if(!isNumber(itemTitle) && isNumber(itemAmount) && itemTitle !== '' && itemAmount !== ''){
+      if(itemTitle !== '' && itemAmount !== ''){
         this[startStr][itemTitle + index] = +itemAmount;
       }
     }
@@ -150,20 +150,20 @@ class AppData {
   };
   getAddExpenses () {
     let addExpenses = additionalExpensesItem.value.split(',');
-    addExpenses.forEach(function(item){
+    addExpenses.forEach( item => {
       item = item.trim();
       if (item !== '') {
         this.addExpenses.push(item);
       }
-    }, this);
+    });
   };
   getAddIncome () {
-    additionalIncomeItem.forEach(function(item){
+    additionalIncomeItem.forEach( item => {
       let itemValue = item.value.trim();
       if (itemValue !== '') {
         this.addIncome.push(itemValue);
       }
-    }, this);
+    });
   };
   getExpensesMonth () {
     for(let key in this.expenses){
