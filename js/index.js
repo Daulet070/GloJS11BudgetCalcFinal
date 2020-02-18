@@ -25,9 +25,10 @@ const start = document.getElementById('start'),
       additionalIncomeValue = document.getElementsByClassName('additional_income-value')[0],
       additionalExpensesValue = document.getElementsByClassName('additional_expenses-value')[0],
       incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
-      targetMonthValue = document.getElementsByClassName('target_month-value')[0],
-      expensesItems = document.querySelectorAll('.expenses-items'),
-      incomeItems = document.querySelectorAll('.income-items');
+      targetMonthValue = document.getElementsByClassName('target_month-value')[0];
+
+let expensesItems = document.querySelectorAll('.expenses-items'),
+    incomeItems = document.querySelectorAll('.income-items');
 
 class AppData {
   constructor(){
